@@ -3,7 +3,7 @@ import turtle
 import random
 import time
 
-# change to use ai
+# change to use ai or play the game as a user
 USE_AI = True
 
 class Stats:
