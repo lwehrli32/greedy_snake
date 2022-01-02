@@ -4,7 +4,7 @@ import random
 import time
 
 # change to use ai
-USE_AI = False
+USE_AI = True
 
 class Stats:
 
@@ -133,21 +133,25 @@ def set_next_turn(i=None):
 
 
 def snake_go_up():
+    print("going up")
     if snake.direction != "down":
         snake.direction = "up"
 
 
 def snake_go_down():
+    print("going down")
     if snake.direction != "up":
         snake.direction = "down"
 
 
 def snake_go_left():
+    print("going left")
     if snake.direction != "right":
         snake.direction = "left"
 
 
 def snake_go_right():
+    print("going right")
     if snake.direction != "left":
         snake.direction = "right"
 
@@ -538,10 +542,10 @@ def snake_move(old_fruit, new_fruit):
     else:
         if snake.direction == 'up':
             y = snake.ycor()
-            snake.setx(y + 20)
+            snake.sety(y + 20)
         if snake.direction == 'down':
             y = snake.ycor()
-            snake.setx(y - 20)
+            snake.sety(y - 20)
         if snake.direction == 'left':
             x = snake.xcor()
             snake.setx(x - 20)
@@ -606,13 +610,14 @@ while game_loop:
         old_fruit[0].right = a + 10
     rnd_try = snake_move(old_fruit, fruit)
 
-    if rnd_try == 1:
-        num_tries += 1
+    if USE_AI:
+        if rnd_try == 1:
+            num_tries += 1
 
-        if num_tries > 2:
+            if num_tries > 2:
+                num_tries = 0
+        elif rnd_try == 0:
             num_tries = 0
-    elif rnd_try == 0:
-        num_tries = 0
 
     ##snake and border collision
     if snake.xcor() > 280 or snake.xcor() < -300 or snake.ycor() > 240 or snake.ycor() < -240:
@@ -624,7 +629,6 @@ while game_loop:
         scoring.write("   GAME OVER \n Your Score is {}".format(score), align="center", font=("Courier", 30, "bold"))
         time.sleep(2)
         game_loop = False
-        break
 
     ## snake collision
     for food in old_fruit:
@@ -658,6 +662,6 @@ if high_score < score:
                   font=("Courier", 30, "bold"))
     time.sleep(3)
 else:
-    print("No new Highscore")
+    print("No new high score")
 
 turtle.Terminator()
