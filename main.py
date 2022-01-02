@@ -16,7 +16,6 @@ class Stats:
         if not curr_score:
             curr_score = 0
 
-        print("write highscore")
         file = open("highscore.txt", "w+")
         file.write(str(curr_score))
         file.close()
@@ -133,25 +132,21 @@ def set_next_turn(i=None):
 
 
 def snake_go_up():
-    print("going up")
     if snake.direction != "down":
         snake.direction = "up"
 
 
 def snake_go_down():
-    print("going down")
     if snake.direction != "up":
         snake.direction = "down"
 
 
 def snake_go_left():
-    print("going left")
     if snake.direction != "right":
         snake.direction = "left"
 
 
 def snake_go_right():
-    print("going right")
     if snake.direction != "left":
         snake.direction = "right"
 
@@ -160,25 +155,21 @@ def snake_move(old_fruit, new_fruit):
     if USE_AI:
         def go_left():
             if snake.direction != "right":
-                print("Turn left")
                 snake.direction = 'left'
                 snake.setx(snake_x - 20)
 
         def go_right():
             if snake.direction != "left":
-                print("turn right")
                 snake.direction = 'right'
                 snake.setx(snake_x + 20)
 
         def go_down():
             if snake.direction != "up":
-                print("turn down")
                 snake.direction = 'down'
                 snake.sety(snake_y - 20)
 
         def go_up():
             if snake.direction != "down":
-                print("turn up")
                 snake.direction = 'up'
                 snake.sety(snake_y + 20)
 
@@ -227,9 +218,6 @@ def snake_move(old_fruit, new_fruit):
                     return True
 
             return False
-
-        print("New fruit x,y: " + str(new_fruit.xcor()) + ", " + str(new_fruit.ycor()))
-        print("snake x,y: " + str(snake.xcor()) + ", " + str(snake.ycor()))
 
         # get coordinates
         snake_x = snake.xcor()
@@ -661,7 +649,5 @@ if high_score < score:
     scoring.write("New High Score: {}!!".format(score), align="center",
                   font=("Courier", 30, "bold"))
     time.sleep(3)
-else:
-    print("No new high score")
 
 turtle.Terminator()
